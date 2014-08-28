@@ -20,6 +20,7 @@ RUN apt-get install -y -q ack-grep
 RUN apt-get install -y -q libxml2-dev
 RUN apt-get install -y -q libxslt-dev
 RUN apt-get install -y -q libncurses-dev
+RUN apt-get install -y -q haskell-platform
 RUN apt-get install -y -q php5
 
 RUN pip install --upgrade httpie
