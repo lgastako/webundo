@@ -10,7 +10,7 @@ all:
 	@cat Makefile
 
 b:
-	$(HDOCKER) build -t $(APP) .
+	$(HDOCKER) build -t $(USER)/$(APP) .
 
 i:
 	$(HDOCKER) images
