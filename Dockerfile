@@ -59,6 +59,9 @@ RUN apt-get install -y -q postgresql-contrib
 ADD postgresql/pg_hba.conf /etc/postgresql/9.3/main/pg_hba.conf
 ADD postgresql/postgresql.conf /etc/postgresql/9.3/main/postgresql.conf
 
+RUN apt-get install -y -q software-properties-common
+RUN apt-get install -y -q python-software-properties
+
 RUN apt-get install -y -q python-setuptools
 RUN easy_install pip
 
@@ -67,7 +70,6 @@ RUN pip install --upgrade httpie
 RUN apt-get install -y -q python-yaml
 RUN apt-get install -y -q python-tz
 RUN apt-get install -y -q python-requests
-RUN apt-get install -y -q python-software-properties
 RUN apt-get install -y -q python-dev
 
 RUN apt-get install -y -q python-numpy
@@ -86,19 +88,23 @@ RUN apt-get install -y -q erlang
 RUN apt-get install -y -q erlang-doc
 RUN apt-get install -y -q nodejs npm
 RUN apt-get install -y -q racket
-RUN apt-get install -y -q g77
-RUN apt-get install -y -q gfortran
-RUN apt-get install -y -q lua5.2
-RUN apt-get install -y -q r-base
-RUN apt-get install -y -q r-base-dev
+#RUN apt-get install -y -q g77
+#RUN apt-get install -y -q gfortran
+#RUN apt-get install -y -q lua5.2
+#RUN apt-get install -y -q r-base
+#RUN apt-get install -y -q r-base-dev
 RUN apt-get install -y -q charles-proxy
 
 ADD scala/scala-2.11.2.deb /scala-2.11.2.deb
 RUN dpkg -i /scala-2.11.2.deb
 
-ADD ocaml/opam_installer.sh /opam_installer.sh
-RUN chmod 755 /opam_installer.sh
-RUN sh /opam_installer.sh /usr/local/bin
+#ADD ocaml/opam_installer.sh /opam_installer.sh
+#RUN chmod 755 /opam_installer.sh
+#RUN sh /opam_installer.sh /usr/local/bin
+RUN add-apt-repository ppa:avsm/ppa
+RUN apt-get update -y
+RUN apt-get install -y -q ocaml
+RUN apt-get install -y -q opam
 
 ADD go/go1.3.linux-amd64.tar.gz /go1.3.linux-amd64.tar.gz
 RUN tar -C /usr/local -xzf /go1.3.linux-amd64.tar.gz
